@@ -13,7 +13,7 @@ class StoreRepository {
         ->selectRaw("COUNT(views.id) AS views")
         ->leftJoin("reviews", 'stores.id', '=', 'reviews.store_id')
         ->leftJoin("views", "stores.id", "=", "views.store_id")
-        ->groupBy("stores.id");
+        ->groupBy("stores.id", "stores.title","stores.description","stores.created_at");
     }
 
     public function getStoresPaginated($sortBy, $order, $limit, $searchParam) {

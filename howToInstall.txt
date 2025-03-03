@@ -1,0 +1,19 @@
+1. Create a mysql database named store_db
+
+2. Copy .env.example and paste the file in same dir as .env
+
+3. Run composer install (Ensure that sodium extension is enabled)
+
+4. Run php artisan migrate to the main folder
+
+5. Run php artisan key:generate
+
+6.  Run  php artisan passport:client --personal (since dbs from php artisan passport:install exist)
+
+7. Run php artisan db:seed
+
+8. Run php artisan l5-swagger:generate
+
+9. Run php artisan queue:work (for test, for prod the prefix  " --daemon" is advised)
+
+10. Run php artisan serve in the same dir but different cmd window

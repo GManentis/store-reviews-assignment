@@ -34,7 +34,7 @@ class StoreController extends Controller
      *         description="Criteria for sortBy. Can be title, description, created_at, views, positive_reviews, negative_reviews",
      *         required=false,
      *         @OA\Schema(
-     *             type="integer",
+     *             type="string",
      *             example=""
      *         )
      *     ),
@@ -44,7 +44,7 @@ class StoreController extends Controller
      *         description="If the results are going to be in ASC or DESC order according to sortBy",
      *         required=false,
      *         @OA\Schema(
-     *             type="integer",
+     *             type="string",
      *             example=""
      *         )
      *     ),
@@ -108,6 +108,6 @@ class StoreController extends Controller
     */
     public function show(Request $request, $storeId) {
         $store = $this->storeService->getSingleStore($request, $storeId);
-        return response()->json($store ?? ["message" => "Store is not available"], $store ? 200 : 404); 
+        return response()->json($store ?? ["message" => "Store is not available"], $store ? 200 : 404);
     }
 }

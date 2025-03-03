@@ -14,6 +14,10 @@ use OpenApi\Annotations as OA;
  *     url="http://localhost",
  *     description="Local Server"
  * )
+  * @OA\Server(
+ *     url="http://localhost:8000",
+ *     description="Local Server with artisan"
+ * )
  * @OA\SecurityScheme(
  *     type="http",
  *     description="Login with email and password to get the authentication token",

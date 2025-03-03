@@ -9,6 +9,10 @@
         {
             "url": "http://localhost",
             "description": "Local Server"
+        },
+        {
+            "url": "http://localhost:8000",
+            "description": "Local Server with artisan"
         }
     ],
     "paths": {
@@ -127,16 +131,6 @@
                         }
                     }
                 ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/reviews"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Selected review for store is deleted"
@@ -179,7 +173,7 @@
                         "description": "Criteria for sortBy. Can be title, description, created_at, views, positive_reviews, negative_reviews",
                         "required": false,
                         "schema": {
-                            "type": "integer",
+                            "type": "string",
                             "example": ""
                         }
                     },
@@ -189,7 +183,7 @@
                         "description": "If the results are going to be in ASC or DESC order according to sortBy",
                         "required": false,
                         "schema": {
-                            "type": "integer",
+                            "type": "string",
                             "example": ""
                         }
                     },
