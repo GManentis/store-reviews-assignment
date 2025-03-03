@@ -1,0 +1,424 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Stores and reviews API",
+        "description": "This is the API documentation for storing reviews per stores.",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/api/stores/{storeId}/reviews": {
+            "put": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Update existing review for a store",
+                "operationId": "885f995d968c71a5e79db6c08df69ed0",
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "description": "Wildcard path parameter for store id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "500"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/reviews"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review for store is updated"
+                    },
+                    "400": {
+                        "description": "The review is empty or not 0 or 1"
+                    },
+                    "401": {
+                        "description": "User not authenticated in the first place"
+                    },
+                    "404": {
+                        "description": "The store or review for this user does not exist"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Create existing review for a store",
+                "operationId": "890ada5c11f90f2cc284649cec621dcc",
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "description": "Wildcard path parameter for store id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "500"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/reviews"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review for store is created"
+                    },
+                    "400": {
+                        "description": "The review is empty or not 0 or 1"
+                    },
+                    "401": {
+                        "description": "User not authenticated in the first place"
+                    },
+                    "404": {
+                        "description": "The store or review for this user does not exist"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Update existing review for a store",
+                "operationId": "958433e0da730afcecb32a744d1a8ef3",
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "description": "Wildcard path parameter for store id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "500"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/reviews"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Selected review for store is deleted"
+                    },
+                    "401": {
+                        "description": "User not authenticated in the first place"
+                    },
+                    "404": {
+                        "description": "The store or review for this user does not exist"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/stores": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "Get all stores paginated",
+                "operationId": "789854b8f9730d47f1ba52ca5e610238",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number for pagination",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": ""
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Criteria for sortBy. Can be title, description, created_at, views, positive_reviews, negative_reviews",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": ""
+                        }
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "If the results are going to be in ASC or DESC order according to sortBy",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": ""
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Number of records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": ""
+                        }
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "param according to which the search is performed. Must not exceed 100 characters",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "location categories are returned"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/stores/{storeId}": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "Get store by id",
+                "operationId": "00d64b610b47286ceb3d4e608b34f1ce",
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "description": "Wildcard path parameter for store id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "500"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The selected store is returned"
+                    },
+                    "404": {
+                        "description": "The store does not exist"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login endpoint",
+                "operationId": "0fc9610184083ac6dddab2c63139225a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/login"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User created successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Failed to authenticate user"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Logout endpoint",
+                "operationId": "8992dd4fbd21ecd6bd79f84228dc98cf",
+                "responses": {
+                    "200": {
+                        "description": "User logout successfully"
+                    },
+                    "400": {
+                        "description": "User not authenticated in the first place"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Register endpoint",
+                "operationId": "2f25885f3b6f61ca11724ec302d2e439",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/register"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User created successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "login": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "description": "User's email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "User's password",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "register": {
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "User's name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "User's email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "User's password",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "reviews": {
+                "required": [
+                    "review"
+                ],
+                "properties": {
+                    "review": {
+                        "description": "The review for store. 1 is for positive review, 0 is for negative",
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Reviews",
+            "description": "Reviews"
+        },
+        {
+            "name": "Stores",
+            "description": "Stores"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
+}
