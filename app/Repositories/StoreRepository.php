@@ -20,15 +20,15 @@ class StoreRepository {
         $limit = is_numeric($limit) && $limit > 0 && $limit % 1 == 0 ? $limit : 10;
         $queryForStoreEntries = $this->getBasicQuery();
 
-        if (!$sortBy) $sortBy = "created_at";
-
         if ($searchParam) {
             $queryForStoreEntries = $queryForStoreEntries->where(function ($query) use ($searchParam) {
                 $query->where("title", "like", "%$searchParam%")->orWhere("description", "like", "%$searchParam%");
             });
         }
 
-        return $queryForStoreEntries->orderBy($sortBy, $order)->orderBy("stores.id", "ASC")->paginate($limit)->appends(['limit' => $limit]);
+        //dd($order, $sortBy);
+        //single line is ok because return wont affect anything
+        return $queryForStoreEntries->when(($sortBy && $order),fn ($q) => $q->orderBy($sortBy, $order))->orderBy("stores.id", "ASC")->paginate($limit)->appends(['limit' => $limit]);
     }
 
     public function getSingleStore($storeId) {

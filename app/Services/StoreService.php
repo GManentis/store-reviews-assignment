@@ -41,7 +41,7 @@ class StoreService {
         $sortBy = in_array($requestSortBy, $this->allowedSortBy) ? $requestSortBy : null;
 
         $requestOrder = strtoupper($request->order);
-        $order = in_array($requestOrder, $this->allowedOrderBy) ? $requestOrder : "ASC";
+        $order = in_array($requestOrder, $this->allowedOrderBy) ? $requestOrder : null;
 
         $stores = $this->storeRepository->getStoresPaginated($sortBy, $order, $request->limit, $request->q);
         $this->managerViewsCounting(Auth::guard("api")->user(), $stores->map(fn($el) => $el->id)->toArray());
